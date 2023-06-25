@@ -1,0 +1,74 @@
+<div class="container">
+  <section>
+    <div class="bouncing-text">
+      <div class="a1">A</div>
+      <div class="d1">D</div>
+      <div class="d2">D</div>
+      <div class="i1">I</div>
+      <div class="t1">T</div>
+      <div class="i2">I</div>
+      <div class="o1">O</div>
+      <div class="n1">N</div>
+      <div class="s">-</div>
+      <div class="g1">G</div>
+      <div class="a2">A</div>
+      <div class="m1">M</div>
+      <div class="e1">E</div>
+    </div>
+  </section>
+  <section>
+    <div class="numbers">
+      <p class="num1">
+        {{ num1 }}
+      </p>
+      <p class="operator">
+        {{ operator }}
+      </p>
+      <p class="num2">
+        {{ num2 }}
+      </p>
+      <p class="equal">is equal to</p>
+    </div>
+    <form sui-form [formGroup]="calculatorForm" (ngSubmit)="checkAnswer()">
+      <div sui-input>
+        <input
+          type="text"
+          placeholder="Write Your Answer Here"
+          formControlName="answer"
+        />
+      </div>
+
+      <button
+        sui-button
+        [disabled]="calculatorForm.invalid ? true : false"
+        type="submit"
+        suiEmphasis="primary"
+      >
+        Submit Answer
+      </button>
+    </form>
+  </section>
+  <section>
+    <div class="scores">
+      <div class="score">
+        <p>Correct</p>
+        <p>{{ correctAnswers }}</p>
+      </div>
+      <div class="score">
+        <p>Incorrect</p>
+        <p>{{ wrongAnswers }}</p>
+      </div>
+    </div>
+
+    <div suiFormField>
+      <sui-checkbox [checked]="true" (checkedChange)="soundEffectsChanged()"
+        >Sound</sui-checkbox
+      >
+      <p (click)="resetScores(true)">Reset Scores</p>
+    </div>
+  </section>
+
+  <audio src="../../../assets/Intro.mp3" autoplay id="introSound"></audio>
+  <audio src="../../../assets/Incorrect.mp3" id="incorrectSound"></audio>
+  <audio src="../../../assets/Correct.mp3" id="correctSound"></audio>
+</div>
